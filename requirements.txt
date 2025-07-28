@@ -20,9 +20,6 @@ sse_starlette
 pydantic
 tf-keras
 newspaper3k
-sqlite3 >= 3.35.0
-
-
 
 
 
