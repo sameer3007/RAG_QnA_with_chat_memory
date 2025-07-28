@@ -2,7 +2,7 @@
 import streamlit as st
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain_chroma import Chroma
+from langchain_community.vectorstores import FAISS
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -42,7 +42,8 @@ if 'store' not in st.session_state:
 
 
 #loading vector store
-vectorstore=Chroma(persist_directory="./chroma_vector_store",embedding_function=embeddings)
+vectorstore=FAISS.load_local("faiss_vector_store", embeddings,allow_dangerous_deserialization=True)
+
 
 #creaing retriever
 retriever=vectorstore.as_retriever()
@@ -113,6 +114,4 @@ if user_input:
         },  # constructs a key "abc123" in `store`.
     )
     st.write("Assistant:", response['answer'])
-
-
 
