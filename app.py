@@ -29,7 +29,7 @@ os.environ['LANGSMITH_PROJECT_RAG_MEM']=os.getenv("LANGSMITH_PROJECT_RAG_MEM")
 embeddings=HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 #initialize model
-llm=ChatGroq(groq_api_key=os.getenv("GROQ_API_KEY_RAG_MEM"),model_name="Gemma2-9b-It")
+llm=ChatGroq(groq_api_key=os.getenv("GROQ_API_KEY_RAG_MEM"),model_name="llama-3.1-8b-instant")
 
 ## set up Streamlit 
 st.title("Conversational RAG With chat history on Cricket")
@@ -114,4 +114,5 @@ if user_input:
         },  # constructs a key "abc123" in `store`.
     )
     st.write("Assistant:", response['answer'])
+
 
